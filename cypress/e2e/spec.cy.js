@@ -1,5 +1,5 @@
 const urlStub = require("../fixtures/url.json");
-
+const postUrl = require("../fixtures/posturl.json");
 describe("when a user visits the page", () => {
   beforeEach(() => {
     cy.intercept(
@@ -52,5 +52,6 @@ describe("When a user fills out and submits the form", () => {
       }
     );
     cy.get("button").click();
+    cy.get("section > :nth-child(1)").contains("a", postUrl.urls[0].short_url);
   });
 });
