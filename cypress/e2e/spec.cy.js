@@ -1,5 +1,6 @@
 const urlStub = require("../fixtures/url.json");
 const postUrl = require("../fixtures/posturl.json");
+
 describe("when a user visits the page", () => {
   beforeEach(() => {
     cy.intercept(
@@ -53,5 +54,23 @@ describe("When a user fills out and submits the form", () => {
     );
     cy.get("button").click();
     cy.get("section > :nth-child(1)").contains("a", postUrl.urls[0].short_url);
+  });
+});
+
+describe("When API return an error", () => {
+  it("Should show error message", () => {
+    const errorAPI = {
+      error: "No short URL is found with id:99999",
+    };
+
+    cy.visit("http://localhost:3000").intercept(
+      "get",
+      "http://localhost:3001/api/v1/urls",
+      {
+        statusCode: 404,
+        body: errorAPI,
+      }
+    );
+    cy.get("p").should("contain", "No urls yet! Find some to shorten!");
   });
 });
