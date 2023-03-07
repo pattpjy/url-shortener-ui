@@ -1,52 +1,57 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 class UrlForm extends Component {
   constructor(props) {
     super();
     this.props = props;
     this.state = {
-      title: '',
-      urlToShorten: ''
+      id: "",
+      title: "",
+      long_url: "",
+      short_url: "",
     };
   }
 
-  handleNameChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  }
+  handleNameChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
     this.clearInputs();
-  }
+    const newURL = {
+      title: this.state.title,
+      long_url: this.state.long_url,
+    };
+    this.props.addNewUrl(newURL);
+  };
 
   clearInputs = () => {
-    this.setState({title: '', urlToShorten: ''});
-  }
+    this.setState({ title: "", long_url: "" });
+  };
 
   render() {
     return (
       <form>
         <input
-          type='text'
-          placeholder='Title...'
-          name='title'
+          type="text"
+          placeholder="Title..."
+          name="title"
           value={this.state.title}
-          onChange={e => this.handleNameChange(e)}
+          onChange={this.handleNameChange}
         />
 
         <input
-          type='text'
-          placeholder='URL to Shorten...'
-          name='title'
-          value={this.state.title}
-          onChange={e => this.handleNameChange(e)}
+          type="text"
+          placeholder="URL to Shorten..."
+          name="long_url"
+          value={this.state.long_url}
+          onChange={this.handleNameChange}
         />
 
-        <button onClick={e => this.handleSubmit(e)}>
-          Shorten Please!
-        </button>
+        <button onClick={(e) => this.handleSubmit(e)}>Shorten Please!</button>
       </form>
-    )
+    );
   }
 }
 

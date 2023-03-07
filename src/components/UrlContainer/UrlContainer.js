@@ -6,6 +6,7 @@ const UrlContainer = ({ urls }) => {
     return (
       <div className="url" key={url.id}>
         <h3>{url.title}</h3>
+        <img src={url.short_url} alt="{url.title}"></img>
         <a href={url.short_url} target="blank">
           {url.short_url}
         </a>
