@@ -1,0 +1,10 @@
+{
+  "urls": [
+    {
+      "id": 2,
+      "long_url": "https://images.unsplash.com/photo-1532798369041-b33eb576ef16?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8Y29tZXR8ZW58MHx8MHx8&auto=format&fit=crop&w=700&q=60",
+      "short_url": "http://localhost:3001/useshorturl/2",
+      "title": "Another Awesome photo"
+    }
+  ]
+}
