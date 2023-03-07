@@ -38,6 +38,19 @@ describe("when a user visits the page", () => {
 });
 describe("When a user fills out and submits the form", () => {
   it("the new shortened URL is rendered", () => {
-    cy.get('[placeholder="Title..."]').type("Comet");
+    cy.intercept(
+      {
+        method: "POST",
+        url: "http://localhost:3001/api/v1/urls",
+      },
+      {
+        id: 2,
+        long_url:
+          "https://images.unsplash.com/photo-1532798369041-b33eb576ef16?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8Y29tZXR8ZW58MHx8MHx8&auto=format&fit=crop&w=700&q=60",
+        short_url: "http://localhost:3001/useshorturl/2",
+        title: "Another Awesome photo",
+      }
+    );
+    cy.get("button").click();
   });
 });
